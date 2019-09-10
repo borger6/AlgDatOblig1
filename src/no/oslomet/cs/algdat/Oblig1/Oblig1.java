@@ -1,3 +1,11 @@
+/*
+Medlemmer:
+
+Olav Markus Bjørndal, s331354;
+Marcus Borger, s321371;
+ */
+
+
 package no.oslomet.cs.algdat.Oblig1;
 
 ////// Løsningsforslag Oblig 1 - 2019 ////////////////////////
