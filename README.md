@@ -2,8 +2,8 @@
 
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
 Oppgaven er levert av følgende studenter:
-* Navn Navnesen, S981737, s981737@oslomet.no
-* ...
+* Marcus Borger, S981737, s981737@oslomet.no
+* Olav Markus Bjørndal, s331354, s331354@oslomet.no
 
 # Arbeidsfordeling
 
