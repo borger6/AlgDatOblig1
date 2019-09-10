@@ -18,15 +18,29 @@ import java.util.NoSuchElementException;
 
 public class Oblig1 {
     private Oblig1() {
+
     }
 
     ///// Oppgave 1 //////////////////////////////////////
+
     public static int maks(int[] a) {
-        throw new NotImplementedException();
+        if(a.length <= 0) {
+            throw new NoSuchElementException("Tomt Array");
+        }
+        int stor = 0;
+        int neste = stor+1;
+
+        for(stor=0; stor <= a.length; stor++){
+            if(a[stor]> a[neste]){
+                bytte(a,stor, neste);
+            }
+        }
+
     }
 
     public static int ombyttinger(int[] a) {
         throw new NotImplementedException();
+
     }
 
     ///// Oppgave 2 //////////////////////////////////////
