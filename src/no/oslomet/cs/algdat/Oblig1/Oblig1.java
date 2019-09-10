@@ -25,16 +25,13 @@ public class Oblig1 {
         if (a.length <= 0){
             throw new NoSuchElementException("Det er ikke noe array her");
         }
-
-        int stor = 0;   //indeksen til det største tallet vi har funnet så langt
-        int neste = stor+1; //indeksen vi sammenligner det foreløpig største tallet med
-
-        for (stor = 0; stor <= a.length; stor++){
-            if (a[stor] < a[neste]){
-                bytte(a,stor,neste);
+        
+        for (int i = 0; i < a.length-1; i++){
+            if (a[i] > a[i+1]){
+                bytte(a,i,i+1);
             }
         }
-        return a[stor];
+        return a[a.length-1];
     }
     public static void bytte(int[] a, int i, int j){
         int temp = a[i];
@@ -43,7 +40,15 @@ public class Oblig1 {
     }
 
     public static int ombyttinger(int[] a) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        int teller=0;
+        for (int i = 0; i < a.length-1; i++){
+            if (a[i] > a[i+1]){
+                bytte(a,i,i+1);
+                teller++;
+            }
+        }
+        return teller;
     }
 
 
