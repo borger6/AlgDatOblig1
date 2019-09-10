@@ -15,7 +15,8 @@ class Oblig1UnitTest {
 
     @org.junit.jupiter.api.Test
     void ombyttinger() {
-        assertEquals(true, false, "Implementer ombyttinger og denne testen");
+        Oblig1.ombyttinger(new int[]{4, 6, 2, 9, 2, 6});
+        //assertEquals(true, false, "Implementer ombyttinger og denne testen");
     }
 
     @org.junit.jupiter.api.Test

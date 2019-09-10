@@ -13,6 +13,7 @@ package no.oslomet.cs.algdat.Oblig1;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 
 public class Oblig1 {
@@ -25,7 +26,7 @@ public class Oblig1 {
         if (a.length <= 0){
             throw new NoSuchElementException("Det er ikke noe array her");
         }
-        
+
         for (int i = 0; i < a.length-1; i++){
             if (a[i] > a[i+1]){
                 bytte(a,i,i+1);
@@ -51,6 +52,36 @@ public class Oblig1 {
         return teller;
     }
 
+    public static int[] randPerm(int n){
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++){
+            a[i] = i+1;
+        }
+        Random r = new Random();
+        for (int k = n-1; k > 0; k--){
+            int i = r.nextInt(k+1);
+            bytte(a,k,i);
+        }
+        return a;
+    }
+    public static int antallMaks(int[] a){
+        int antall = 0;
+        int maksverdi = a[0];
+
+        for (int i = 1; i < a.length; i++){
+            if (a[i] > maksverdi){
+                antall++;
+                maksverdi = a[i];
+            }
+        }
+        return antall;
+    }
+    /*
+    Ved å bruke metoden for harmoniske tall kan man finne gjennomsnittet av antall bytter
+    Jeg er ikke sikker på hvordan jeg sammenligner denne maks-metoden med tidligere,
+    men jeg tror dette er den beste fordi den nærmer seg det faktiske snittet.
+     */
+
 
     ///// Oppgave 2 //////////////////////////////////////
     public static int antallUlikeSortert(int[] a) {
@@ -66,6 +97,7 @@ public class Oblig1 {
     ///// Oppgave 4 //////////////////////////////////////
     public static void delsortering(int[] a) {
         throw new NotImplementedException();
+
     }
 
     ///// Oppgave 5 //////////////////////////////////////
