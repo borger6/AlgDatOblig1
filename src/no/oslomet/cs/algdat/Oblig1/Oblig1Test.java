@@ -25,7 +25,8 @@ import java.util.*;
  */
 public class Oblig1Test {
 
-    ///// Oppgave 1 //////////////////////////////////////
+    ///// Oppgave 1 /////////
+    // ///////////////////////////
     @org.junit.jupiter.api.Test
     void oppgave1() {
         int antallFeil = 0;
