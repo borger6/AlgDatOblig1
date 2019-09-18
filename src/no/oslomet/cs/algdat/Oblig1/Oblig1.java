@@ -413,7 +413,6 @@ public class Oblig1 {
     ///// Oppgave 10 //////////////////////////////////////
     public static int bokstavNr(char bokstav) {
         throw new NotImplementedException();
-        //char[] alfabet = "abcdefghijklmnopqrstuvwxyzæøt".toCharArray();
 
     }
 

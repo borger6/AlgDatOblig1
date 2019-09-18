@@ -12,3 +12,6 @@ I oppgaven har vi hatt følgende arbeidsfordeling:
 * Olav har hatt hovedansvar for oppgave 2, 3, 5, 6 og 7. 
 
 
+# Resultatet
+
+Alle oppgavene er kjørt, testet og de kompilerer.
