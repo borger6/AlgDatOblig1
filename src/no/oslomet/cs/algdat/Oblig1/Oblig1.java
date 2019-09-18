@@ -133,9 +133,79 @@ public class Oblig1 {
 
     ///// Oppgave 4 //////////////////////////////////////
     public static void delsortering(int[] a) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+
+        int l = 0;
+        int r = a.length-1;
+        int oddetall = 0;
+
+        for (int i = l; i<=r; i++){
+            if(a[i] % 2 != 0){
+                oddetall++;
+            }
+        }
+
+        if (l > r){
+            return;
+        }
+        while (r > l){
+            while (a[l] % 2 != 0 && l<r){
+                l++;
+            }
+            while (a[r] % 2 == 0 && l<r){
+                r--;
+            }
+            if (l<r){
+                bytte(a, l, r);
+                l++;
+                r--;
+            }
+        }
+
+        if (oddetall == 0) {
+            kvikksortering(a, 0, a.length-1);
+        }
+        else if (oddetall == a.length-1){
+            kvikksortering(a, 0, a.length-1);
+        }
+        else {
+            kvikksortering(a, 0, oddetall-1);
+            kvikksortering(a, oddetall, a.length-1);
+        }
+
+        return;
 
     }
+    public static void kvikksortering(int[] a, int l, int r){
+        if ( l>=r ){
+            return; //hvis tabellen har én verdi eller mindre sorteres den ikke
+        }
+        int k = sParter0(a, l, r, (l + r )/2); //bruker midtverdi
+        kvikksortering(a, l, k-1);//sorterer intervallet til venstre for k inkl k
+        kvikksortering(a, k+1, r); //sorterer høyre for k
+    }
+    public static void kvikksortering1(int[]a){
+        kvikksortering(a, 0, a.length-1);
+    }
+
+    private static int sParter0(int[] a, int l, int r, int i) {
+        bytte(a, i, r);
+        int pos = parter0(a, l, r-1, a[r]);
+        bytte(a, pos, r);
+        return pos;
+    }
+    private static int parter0(int[] a, int l, int r, int midt){
+        while (true){
+            while (l <= r && a[l] < midt) l++;
+            while (l <= r && a[r] > midt) r--;
+
+            if (l < r){
+                bytte(a, l++, r--);
+            }
+            else return l;
+        }
+    }
+
 
     ///// Oppgave 5 //////////////////////////////////////
     public static void rotasjon(char[] a) {
@@ -251,22 +321,124 @@ public class Oblig1 {
 
     ///// Oppgave 8 //////////////////////////////////////
     public static int[] indekssortering(int[] a) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        int[] indeks = new int[a.length];
+        int[] aSortert = new int[a.length];
+        for(int i = 0; i < a.length; i++){
+            aSortert[i] = a[i];
+            indeks[i] = i;
+        }
+        for (int i = 0; i < aSortert.length; i++){
+            int minMaks = min(aSortert, i, aSortert.length);
+            bytte(aSortert, i, minMaks);
+            bytte(indeks,i, minMaks);
+        }
+        return indeks;
     }
+    public static int min(int[] a, int fra, int til){
+        if (a.length < 1)
+            throw new java.util.NoSuchElementException("Tabellen a er tom!");
+
+        int m = fra;
+        for (int i = fra+1; i < til; i++){
+            if (a[i] < a[m]){
+                m = i;
+            }
+        }
+        return m;
+    }
+
+
 
 
     ///// Oppgave 9 //////////////////////////////////////
     public static int[] tredjeMin(int[] a) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        int n = a.length;
+        if (a.length < 3) {
+            throw new NoSuchElementException("Tabellen er for kort");
+        }
+
+        int[] b = new int[3];
+        for(int i = 0; i < b.length; i++) {
+            b[i] = a[i];
+        }
+        int[] bSortert = indekssortering(b);
+
+        int min = bSortert[0];
+        int min2 = bSortert[1];
+        int min3 = bSortert[2];
+
+        int minverdi = a[min];
+        int min2verdi = a[min2];
+        int min3verdi = a[min3];
+
+        for (int i = 3; i < n; i++){
+            if (a[i] < min3verdi){
+                if (a[i] < min2verdi){
+                    if (a[i] < minverdi){
+                        min3 = min2;
+                        min3verdi = min2verdi;
+
+                        min2 = min;
+                        min2verdi = minverdi;
+
+                        min = i;
+                        minverdi = a[min];
+
+                    }
+                    else{
+                        min3 = min2;
+                        min2 = i;
+
+                        min3verdi = min2verdi;
+                        min2verdi = a[min2];
+
+                    }
+                }
+                else{
+                    min3 = i;
+                    min3verdi = a[min3];
+
+                }
+            }
+        }
+
+        return new int[] {min, min2, min3};
+
     }
+
+
 
     ///// Oppgave 10 //////////////////////////////////////
     public static int bokstavNr(char bokstav) {
         throw new NotImplementedException();
+        //char[] alfabet = "abcdefghijklmnopqrstuvwxyzæøt".toCharArray();
+
     }
 
     public static boolean inneholdt(String a, String b) {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        final int MAX_CHAR = 256;
+
+        // Create an array of size 256 i.e. ASCII_SIZE
+        int count[] = new int[MAX_CHAR];
+
+        int len = a.length();
+        // Initialize count array index
+        for (int i = 0; i < len; i++)
+            count[a.charAt(i)]++;
+
+        int lengdeB = b.length();
+        for (int i = 0; i < lengdeB; i++){
+            count[b.charAt(i)]--;
+        }
+        for (int i = 0; i < MAX_CHAR; i++){
+            if (count[i] > 0){
+                return false;
+            }
+        }
+        return true;
     }
 
 }  // Oblig1
